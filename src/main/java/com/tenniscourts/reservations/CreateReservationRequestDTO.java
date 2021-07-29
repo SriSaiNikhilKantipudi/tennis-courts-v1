@@ -11,10 +11,13 @@ import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+/*
+ * @Getter
+ * 
+ * @Setter
+ */
 @Builder
-@Data
+//@Data
 public class CreateReservationRequestDTO {
 
     @NotNull
@@ -22,5 +25,23 @@ public class CreateReservationRequestDTO {
 
     @NotNull
     private Long scheduleId;
+
+	public Long getGuestId() {
+		return guestId;
+	}
+
+	public void setGuestId(Long guestId) {
+		this.guestId = guestId;
+	}
+
+	public Long getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+    
+    
 
 }

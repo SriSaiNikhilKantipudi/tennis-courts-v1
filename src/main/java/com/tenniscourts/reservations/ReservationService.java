@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 public class ReservationService {
 
-    private final ReservationRepository reservationRepository;
+    private  ReservationRepository reservationRepository;
 
-    private final ReservationMapper reservationMapper;
+    private  ReservationMapper reservationMapper;
 
     public ReservationDTO bookReservation(CreateReservationRequestDTO createReservationRequestDTO) {
         throw new UnsupportedOperationException();
@@ -76,7 +76,7 @@ public class ReservationService {
     public ReservationDTO rescheduleReservation(Long previousReservationId, Long scheduleId) {
         Reservation previousReservation = cancel(previousReservationId);
 
-        if (scheduleId.equals(previousReservation.getSchedule().getId())) {
+        if (scheduleId.equals(previousReservation.getSchedule().getId()) && ReservationStatus.READY_TO_PLAY.equals(previousReservation.getReservationStatus())) {
             throw new IllegalArgumentException("Cannot reschedule to the same slot.");
         }
 
@@ -90,4 +90,15 @@ public class ReservationService {
         newReservation.setPreviousReservation(reservationMapper.map(previousReservation));
         return newReservation;
     }
+
+	public ReservationRepository getReservationRepository() {
+		return reservationRepository;
+	}
+
+	public ReservationMapper getReservationMapper() {
+		return reservationMapper;
+	}
+    
+    
+    
 }

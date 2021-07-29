@@ -2,6 +2,8 @@ package com.tenniscourts.tenniscourts;
 
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
+
 
 @Mapper(componentModel = "spring")
 public interface TennisCourtMapper {
